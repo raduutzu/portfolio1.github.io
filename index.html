@@ -1,159 +1,253 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>radu - roblox dev portfolio</title>
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      color: #fff;
-      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-      background-size: 200% 200%;
-      animation: bgShift 20s ease infinite;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>radu | roblox developer</title>
+<style>
+html, body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+    color: white;
+    background: linear-gradient(-45deg, #050816, #0f172a, #1e1b4b, #312e81);
+    background-size: 400% 400%;
+    animation: gradientMove 15s ease infinite;
+}
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+.container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 40px;
+    border-radius: 24px;
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(18px);
+    border: 1px solid rgba(255,255,255,0.1);
+
+    box-shadow:
+        0 0 40px rgba(139,92,246,0.25),
+        0 0 100px rgba(59,130,246,0.15);
+}
+h1 {
+    font-size: 4rem;
+    margin-bottom: 10px;
+
+    background: linear-gradient(
+        90deg,
+        #60a5fa,
+        #8b5cf6,
+        #ec4899
+    );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    text-shadow: 0 0 30px rgba(139,92,246,0.4);
+}
+h2 {
+    border-bottom: 2px solid rgba(139,92,246,0.5);
+    padding-bottom: 10px;
+    margin-top: 40px;
+}
+h3 {
+    color: #c4b5fd;
+}
+p, li {
+    color: #dbeafe;
+    line-height: 1.8;
+}
+a {
+    color: #60a5fa;
+    text-decoration: none;
+    transition: 0.3s;
+}
+a:hover {
+    color: #c084fc;
+    text-shadow:
+        0 0 10px #8b5cf6,
+        0 0 20px #8b5cf6;
+}
+.rainbow-text {
+    background: linear-gradient(
+        90deg,
+        #60a5fa,
+        #8b5cf6,
+        #ec4899
+    );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+section {
+    margin-bottom: 40px;
+    animation: fadeIn 0.8s ease;
+}
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
     }
 
-    @keyframes bgShift {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
+}
+.profile-card {
+    display: flex;
+    align-items: center;
+    gap: 25px;
 
-    .container {
-      max-width: 720px;
-      margin: 50px auto;
-      padding: 30px;
-      background: rgba(0, 0, 0, 0.6);
-      backdrop-filter: blur(8px);
-      border-radius: 16px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
-    }
+    margin: 35px 0;
+    padding: 25px;
 
-    h1, h2 {
-      text-transform: lowercase;
-      letter-spacing: 1.5px;
-      animation: pulseGlow 4s ease-in-out infinite;
-    }
+    background: rgba(255,255,255,0.06);
 
-    @keyframes pulseGlow {
-      0%, 100% {
-        text-shadow: 0 0 10px #4ade80, 0 0 20px #4ade80;
-      }
-      50% {
-        text-shadow: 0 0 2px #4ade80, 0 0 6px #4ade80;
-      }
-    }
+    border-radius: 20px;
 
-    h1 {
-      font-size: 3em;
-      margin-bottom: 0.2em;
-    }
+    border: 1px solid rgba(255,255,255,0.15);
 
-    h2 {
-      border-bottom: 2px solid #4ade80;
-      padding-bottom: 6px;
-      margin-top: 2em;
-      margin-bottom: 0.6em;
-    }
+    box-shadow:
+        0 0 25px rgba(139,92,246,0.25);
 
-    p, li {
-      font-size: 1.1em;
-      line-height: 1.7em;
-      margin-bottom: 0.8em;
-      color: #e0f2f1;
-    }
+    transition: 0.4s ease;
+}
+.profile-card:hover {
+    transform: translateY(-8px);
 
-    ul {
-      padding-left: 20px;
-    }
+    box-shadow:
+        0 0 45px rgba(139,92,246,0.55);
+}
+.profile-card img {
+    width: 130px;
+    height: 130px;
 
-    a {
-      color: #a3ffce;
-      text-decoration: none;
-      font-weight: bold;
-      transition: text-shadow 0.3s ease;
-    }
+    border-radius: 50%;
 
-    a:hover {
-      text-shadow: 0 0 8px #a3ffce, 0 0 12px #a3ffce;
-    }
+    border: 3px solid #8b5cf6;
 
-    .rainbow-text {
-      background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      font-weight: bold;
-    }
+    box-shadow:
+        0 0 25px rgba(139,92,246,0.8);
+}
+.profile-info h3 {
+    font-size: 2rem;
+    margin: 0;
 
-    section {
-      margin-bottom: 2.5em;
-    }
-  </style>
+    color: #c4b5fd;
+}
+.profile-button {
+    display: inline-block;
+
+    margin-top: 10px;
+
+    padding: 12px 22px;
+
+    border-radius: 12px;
+
+    background: linear-gradient(
+        90deg,
+        #60a5fa,
+        #8b5cf6
+    );
+
+    color: white;
+
+    font-weight: bold;
+
+    transition: 0.3s;
+}
+.profile-button:hover {
+    transform: scale(1.05);
+
+    box-shadow:
+        0 0 20px #8b5cf6;
+}
+</style>
 </head>
 <body>
-  <div class="container">
-    <h1>hey im radu</h1>
-    <p>roblox dev & lua scripter trying to make games ppl actually wanna play</p>
+<div class="container">
+<h1>hey im radu</h1>
+<p>
+roblox developer specializing in gameplay systems,
+ui development, roact architecture, and multiplayer experiences
+</p>
+<div class="profile-card">
 
-    <section>
-      <h2>skills</h2>
-      <ul>
-        <li>lua scripting in roblox studio</li>
-        <li>making gameplay systems like rounds roles and player effects</li>
-        <li>building ui that works smooth with tweenservice and events</li>
-        <li>saving player data with datastores</li>
-        <li>using remoteevents to keep server and clients synced</li>
-        <li>using roact services for UI's and allat.</li>
-        <li>i use visual code studio and argon plugin to create perfect ui's and overall scripts.</li>
-      </ul>
-    </section>
-
-    <section>
-      <h2 class="rainbow-text">projects (lua)</h2>
-      <h3>mindbreak - survival game</h3>
-      <ul>
-        <li>made a system that picks one player per round to be “unstable” with cool powers</li>
-        <li>added sanity effects like ui glitches and spooky sounds</li>
-        <li>used remoteevents to keep everything synced between server and players</li>
-        <li>currently working on map changes and voting systems</li>
-        <li>i used roact for my ui's such as my cctv ui's and allat yapping stuff</li>
-      </ul>
-
-      <h3>garden builder - chill garden game</h3>
-      <ul>
-        <li>created tool to place decorations with grid snapping and rotation</li>
-        <li>built smooth animated ui shop</li>
-        <li>saving player progress with roblox datastores</li>
-        <li>added live preview before placing objects</li>
-        <li>used roact services for the shop menu and the trade system, and the most important the admin panel that has 328 interesting features!</li>
-      </ul>
-    </section>
-
-    <section>
-      <h2 class="rainbow-text">projects (HTML)</h2>
-      <ul>
-        <li>
-          <strong>clicker simulator v1.0:</strong>
-          <a href="https://wxyfbs.github.io/clickersimulator.github.io/" target="_blank" rel="noopener">
-            https://wxyfbs.github.io/clickersimulator.github.io/
-          </a>
-        </li>
-      </ul>
-    </section>
-
-    <section>
-      <h2>proof and stuff</h2>
-      <p>i can share screenshots of code or gameplay videos just ask also got private test places you can check out</p>
-    </section>
-
-    <section>
-      <h2>contact</h2>
-      <p>roblox profile <a href="https://www.roblox.com/users/4055167278/profile" target="_blank" rel="noopener">https://www.roblox.com/users/4055167278/profile</a></p>
-      <p>@wxyf on discord</p>
-    </section>
-  </div>
+<img src="https://tr.rbxcdn.com/30DAY-AvatarHeadshot-AEC9A0B8A34A894E6962210A5C9EC986-Png/150/150/AvatarHeadshot/Webp/noFilter">
+<div class="profile-info">
+<h3>radu</h3>
+<p>
+Roblox Developer<br>
+Lua Programmer<br>
+UI & Roact Developer
+</p>
+<a class="profile-button"
+href="https://www.roblox.com/users/4055167278/profile"
+target="_blank">
+View Roblox Profile
+</a>
+</div>
+</div>
+<section>
+<h2>skills</h2>
+<ul>
+<li>advanced lua scripting in roblox studio</li>
+<li>building scalable user interfaces using roact and component-based architecture</li>
+<li>state management, reusable components, props, hooks, and maintainable ui structures with roact</li>
+<li>developing responsive and animated interfaces with smooth user experiences</li>
+<li>client-server communication using remoteevents and remotefunctions</li>
+<li>data persistence using roblox datastores and profile management systems</li>
+<li>experience with visual studio code, argon, and modern roblox development workflows</li>
+<li>optimizing performance and maintaining clean, organized codebases</li>
+</ul>
+</section>
+<section>
+<h2 class="rainbow-text">projects (lua)</h2>
+<h3>mindbreak - psychological survival game</h3>
+<ul>
+<li>developed a round-based system that selects one player each round to become "unstable" with unique abilities</li>
+<li>implemented sanity mechanics including visual distortions, ui effects, and immersive audio systems</li>
+<li>used remoteevents to synchronize gameplay between server and clients</li>
+<li>built multiple interfaces using roact for maintainable and reusable ui components</li>
+<li>created modular systems designed for future expansion and content updates</li>
+<li>currently developing map voting, progression systems, and additional gameplay mechanics</li>
+</ul>
+<h3>garden builder - creative sandbox game</h3>
+<ul>
+<li>created a building system with grid snapping, rotation controls, and placement previews</li>
+<li>developed a smooth animated shop interface with responsive ui interactions</li>
+<li>implemented player data saving using roblox datastores</li>
+<li>added real-time object previews before placement</li>
+<li>built roact-powered interfaces including trading systems, shop menus, and administration tools</li>
+<li>focused on user experience, scalability, and clean ui design</li>
+</ul>
+</section>
+<section>
+<h2>work samples</h2>
+<p>
+i can provide code samples, screenshots, gameplay footage,
+or access to private testing places upon request.
+</p>
+</section>
+<section>
+<h2>contact</h2>
+<p>
+roblox profile:
+<a href="https://www.roblox.com/users/4055167278/profile" target="_blank">
+view profile
+</a>
+</p>
+<p>
+discord:
+<a href="http://discord.com/users/1470513986217709601" target="_blank">
+view profile
+</a>
+</p>
+</section>
+</div>
 </body>
 </html>

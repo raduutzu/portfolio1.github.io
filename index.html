@@ -1,260 +1,773 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>radu | roblox developer</title>
-<style>
-html, body {
-    margin: 0;
-    padding: 0;
-    min-height: 100%;
-    font-family: 'Inter', 'Segoe UI', sans-serif;
-    color: white;
-    background: linear-gradient(-45deg, #050816, #0f172a, #1e1b4b, #312e81);
-    background-size: 400% 400%;
-    animation: gradientMove 15s ease infinite;
-}
-@keyframes gradientMove {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-.container {
-    max-width: 900px;
-    margin: 40px auto;
-    padding: 40px;
-    border-radius: 24px;
-    background: rgba(255,255,255,0.05);
-    backdrop-filter: blur(18px);
-    border: 1px solid rgba(255,255,255,0.1);
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#101114">
+    <title>radu</title>
 
-    box-shadow:
-        0 0 40px rgba(139,92,246,0.25),
-        0 0 100px rgba(59,130,246,0.15);
-}
-h1 {
-    font-size: 4rem;
-    margin-bottom: 10px;
+    <style>
+        :root {
+            color-scheme: dark;
+            --bg: #101114;
+            --panel: #17191e;
+            --border: #2b2e35;
+            --text: #e7e8eb;
+            --muted: #9298a4;
+            --accent: #a9baff;
+            --green: #8bc5a1;
+        }
 
-    background: linear-gradient(
-        90deg,
-        #60a5fa,
-        #8b5cf6,
-        #ec4899
-    );
+        * {
+            box-sizing: border-box;
+        }
 
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 25px;
+        }
 
-    text-shadow: 0 0 30px rgba(139,92,246,0.4);
-}
-h2 {
-    border-bottom: 2px solid rgba(139,92,246,0.5);
-    padding-bottom: 10px;
-    margin-top: 40px;
-}
-h3 {
-    color: #c4b5fd;
-}
-p, li {
-    color: #dbeafe;
-    line-height: 1.8;
-}
-a {
-    color: #60a5fa;
-    text-decoration: none;
-    transition: 0.3s;
-}
-a:hover {
-    color: #c084fc;
-    text-shadow:
-        0 0 10px #8b5cf6,
-        0 0 20px #8b5cf6;
-}
-.rainbow-text {
-    background: linear-gradient(
-        90deg,
-        #60a5fa,
-        #8b5cf6,
-        #ec4899
-    );
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--text);
+            font-family: "segoe ui", sans-serif;
+            font-size: 14px;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
 
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-section {
-    margin-bottom: 40px;
-    animation: fadeIn 0.8s ease;
-}
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(15px);
-    }
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
 
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-.profile-card {
-    display: flex;
-    align-items: center;
-    gap: 25px;
+        a:hover {
+            color: var(--accent);
+        }
 
-    margin: 35px 0;
-    padding: 25px;
+        button {
+            font: inherit;
+        }
 
-    background: rgba(255,255,255,0.06);
+        .page {
+            width: min(100% - 36px, 880px);
+            margin: auto;
+            padding: 44px 0 30px;
+        }
 
-    border-radius: 20px;
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            padding-bottom: 17px;
+            border-bottom: 1px solid var(--border);
+        }
 
-    border: 1px solid rgba(255,255,255,0.15);
+        .logo {
+            font-weight: 650;
+            letter-spacing: -.5px;
+        }
 
-    box-shadow:
-        0 0 25px rgba(139,92,246,0.25);
+        .topbar-right {
+            color: var(--muted);
+            font-size: 12px;
+        }
 
-    transition: 0.4s ease;
-}
-.profile-card:hover {
-    transform: translateY(-8px);
+        .hero {
+            padding: 65px 0 48px;
+        }
 
-    box-shadow:
-        0 0 45px rgba(139,92,246,0.55);
-}
-.profile-card img {
-    width: 130px;
-    height: 130px;
+        .eyebrow {
+            margin-bottom: 13px;
+            color: var(--accent);
+            font-size: 11px;
+            letter-spacing: 1.5px;
+            text-transform: lowercase;
+        }
 
-    border-radius: 50%;
+        h1 {
+            margin: 0;
+            font-size: clamp(40px, 8vw, 62px);
+            font-weight: 600;
+            letter-spacing: -3px;
+            line-height: 1.12;
+        }
 
-    border: 3px solid #8b5cf6;
+        .hero p {
+            max-width: 590px;
+            margin: 18px 0 0;
+            color: #aeb3bd;
+            font-size: 15px;
+        }
 
-    box-shadow:
-        0 0 25px rgba(139,92,246,0.8);
-}
-.profile-info h3 {
-    font-size: 2rem;
-    margin: 0;
+        .hero-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 25px;
+        }
 
-    color: #c4b5fd;
-}
-.profile-button {
-    display: inline-block;
+        .hero-links a,
+        .inline-link {
+            color: var(--accent);
+            font-size: 12px;
+        }
 
-    margin-top: 10px;
+        .hero-links a:hover,
+        .inline-link:hover {
+            text-decoration: underline;
+        }
 
-    padding: 12px 22px;
+        .navigation {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            padding: 15px 0;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
 
-    border-radius: 12px;
+        .navigation a {
+            color: var(--muted);
+            font-size: 12px;
+        }
 
-    background: linear-gradient(
-        90deg,
-        #60a5fa,
-        #8b5cf6
-    );
+        .navigation a:hover {
+            color: var(--text);
+        }
 
-    color: white;
+        section {
+            padding: 38px 0;
+            border-bottom: 1px solid var(--border);
+        }
 
-    font-weight: bold;
+        .section-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 19px;
+        }
 
-    transition: 0.3s;
-}
-.profile-button:hover {
-    transform: scale(1.05);
+        h2 {
+            margin: 0;
+            font-size: 19px;
+            font-weight: 600;
+            letter-spacing: -.5px;
+        }
 
-    box-shadow:
-        0 0 20px #8b5cf6;
-}
-</style>
+        .subheading {
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 6px;
+            padding: 5px;
+            width: fit-content;
+            max-width: 100%;
+            margin-bottom: 23px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: #141519;
+        }
+
+        .tab {
+            padding: 8px 15px;
+            border: 1px solid transparent;
+            border-radius: 5px;
+            background: transparent;
+            color: var(--muted);
+            cursor: pointer;
+            font-size: 12px;
+            transition: background .15s, color .15s;
+        }
+
+        .tab:hover {
+            color: var(--text);
+        }
+
+        .tab[aria-selected="true"] {
+            background: #272a32;
+            border-color: #363a45;
+            color: var(--text);
+        }
+
+        .tab-content[hidden] {
+            display: none;
+        }
+
+        .position {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) auto;
+            gap: 14px 20px;
+            padding: 19px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .position:first-child {
+            border-top: 0;
+            padding-top: 0;
+        }
+
+        .position h3,
+        .project h3 {
+            margin: 0;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .role {
+            margin: 3px 0 0;
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .date {
+            color: var(--muted);
+            font-size: 11px;
+            white-space: nowrap;
+        }
+
+        .position-description {
+            grid-column: 1 / -1;
+            max-width: 640px;
+            margin: -5px 0 0;
+            color: #aeb3bd;
+            font-size: 13px;
+        }
+
+        .experience-count {
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+        .project {
+            padding: 23px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .project:first-of-type {
+            padding-top: 0;
+            border-top: 0;
+        }
+
+        .project-description {
+            max-width: 670px;
+            margin: 11px 0 0;
+            color: #aeb3bd;
+            font-size: 13px;
+        }
+
+        .project-details {
+            margin: 12px 0 0;
+            padding-left: 18px;
+            color: #b6bbc5;
+            font-size: 12px;
+        }
+
+        .project-details li {
+            margin: 4px 0;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+            margin-top: 15px;
+        }
+
+        .tag {
+            padding: 3px 8px;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            color: #b8bdc7;
+            font-size: 10px;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .skill {
+            padding: 7px 11px;
+            border: 1px solid var(--border);
+            border-radius: 5px;
+            color: #c1c5ce;
+            font-size: 12px;
+        }
+
+        .contact-list {
+            display: grid;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 13px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .contact-item:first-child {
+            border-top: 0;
+        }
+
+        .contact-label {
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .contact-value {
+            overflow-wrap: anywhere;
+            text-align: right;
+            font-size: 12px;
+        }
+
+        footer {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            padding-top: 22px;
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+        @media (max-width: 540px) {
+            .page {
+                width: calc(100% - 30px);
+                padding-top: 25px;
+            }
+
+            .hero {
+                padding: 48px 0 38px;
+            }
+
+            h1 {
+                letter-spacing: -2px;
+            }
+
+            .position {
+                gap: 6px 12px;
+            }
+
+            .date {
+                grid-column: 1 / -1;
+                grid-row: 2;
+            }
+
+            .position-description {
+                margin-top: 3px;
+            }
+
+            .contact-item {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 3px;
+            }
+
+            .contact-value {
+                text-align: left;
+            }
+
+            footer {
+                flex-direction: column;
+                gap: 5px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                transition-duration: .01ms !important;
+            }
+        }
+    </style>
 </head>
-<body>
-<div class="container">
-<h1>hey im radu</h1>
-<p>
-roblox developer specializing in gameplay systems,
-ui development, roact architecture, and multiplayer experiences
-</p>
-<div class="profile-card">
 
-<img src="https://tr.rbxcdn.com/30DAY-AvatarHeadshot-AEC9A0B8A34A894E6962210A5C9EC986-Png/150/150/AvatarHeadshot/Webp/noFilter">
-<div class="profile-info">
-<h3>radu</h3>
-<p>
-Roblox Developer<br>
-Lua Programmer<br>
-UI & Roact Developer
-</p>
-<a class="profile-button"
-href="https://www.roblox.com/users/4055167278/profile"
-target="_blank">
-View Roblox Profile
-</a>
+<body>
+<div class="page">
+
+    <header id="home">
+        <div class="topbar">
+            <a class="logo" href="#home">portfolio</a>
+            <span class="topbar-right">roblox development and staff experiences</span>
+        </div>
+
+        <div class="hero">
+            <div class="eyebrow">developer portfolio · 2026</div>
+            <h1>hey, i'm radu.</h1>
+
+            <p>
+                i work on roblox gameplay systems, user interfaces,
+                and game development. i've also spent time in moderation
+                and administration roles across several communities.
+            </p>
+
+            <div class="hero-links">
+                <a href="https://www.roblox.com/users/4055167278/profile"
+                   target="_blank" rel="noopener noreferrer">roblox profile ↗</a>
+
+
+                <a href="https://discord.com/users/1470513986217709601"
+                   target="_blank" rel="noopener noreferrer">discord profile ↗</a>
+                   
+                                   <a href="https://medal.tv/ro/u/raduutzu"
+                   target="_blank" rel="noopener noreferrer">medal profile ↗</a>
+                   
+            </div>
+        </div>
+    </header>
+
+    <nav class="navigation" aria-label="main navigation">
+        <a href="#positions">positions</a>
+        <a href="#projects">projects</a>
+        <a href="#skills">skills</a>
+        <a href="#contact">contact</a>
+    </nav>
+
+    <main>
+        <section id="positions">
+            <div class="section-heading">
+                <h2>positions</h2>
+                <span class="subheading">moderation & development</span>
+            </div>
+
+            <div class="tabs" role="tablist" aria-label="position categories">
+                <button class="tab"
+                        id="moderation-tab"
+                        type="button"
+                        role="tab"
+                        aria-selected="true"
+                        aria-controls="moderation-panel">
+                    moderation
+                </button>
+
+                <button class="tab"
+                        id="development-tab"
+                        type="button"
+                        role="tab"
+                        aria-selected="false"
+                        aria-controls="development-panel"
+                        tabindex="-1">
+                    development
+                </button>
+            </div>
+
+            <div class="tab-content"
+                 id="moderation-panel"
+                 role="tabpanel"
+                 aria-labelledby="moderation-tab">
+
+                <div class="section-heading">
+                    <span class="subheading">community staff experience</span>
+                    <span class="experience-count">8 positions</span>
+                </div>
+
+                <article class="position">
+                    <div>
+                        <h3>des hood</h3>
+                        <p class="role">moderator</p>
+                    </div>
+                    <span class="date">2026 — 2026</span>
+                </article>
+
+                <article class="position">
+                    <div>
+                        <h3>sharkuses british army</h3>
+                        <p class="role">trial moderator</p>
+                    </div>
+                    <span class="date">2022 — 2022</span>
+                </article>
+
+                <article class="position">
+                    <div>
+                        <h3>da customs</h3>
+                        <p class="role">head administrator</p>
+                    </div>
+                    <span class="date">2021 — 2021</span>
+                </article>
+
+                <article class="position">
+                    <div>
+                        <h3>zer macro</h3>
+                        <p class="role">administrator</p>
+                    </div>
+                    <span class="date">2026 — 2026</span>
+                </article>
+
+                <article class="position">
+                    <div>
+                        <h3>doj:rp sandy shores</h3>
+                        <p class="role">moderator</p>
+                    </div>
+                    <span class="date">2026 — 2026</span>
+                </article>
+
+                <article class="position">
+                    <div>
+                        <h3>da uphill</h3>
+                        <p class="role">trial moderator</p>
+                    </div>
+                    <span class="date">2026 — 2026</span>
+                </article>
+
+                <article class="position">
+                    <div>
+                        <h3>zee macro!</h3>
+                        <p class="role">head administrator</p>
+                    </div>
+                    <span class="date">2026 — 2026</span>
+                </article>
+
+                <article class="position">
+                    <div>
+                        <h3>zee hood</h3>
+                        <p class="role">trial moderator</p>
+                    </div>
+                    <span class="date">2025 — 2025</span>
+                </article>
+            </div>
+
+            <div class="tab-content"
+                 id="development-panel"
+                 role="tabpanel"
+                 aria-labelledby="development-tab"
+                 hidden>
+
+                <div class="section-heading">
+                    <span class="subheading">technical & creative work</span>
+                    <span class="experience-count">4 positions</span>
+                </div>
+
+                <article class="position">
+                    <div>
+                        <h3>medal research group</h3>
+                        <p class="role">medal researcher</p>
+                    </div>
+                    <span class="date">2025 — present</span>
+                    <p class="position-description">
+contributed user feedback and feature evaluations through the medal research group, helping identify usability improvements and support the ongoing development of the medal platform.
+                    </p>
+                </article>
+
+                <article class="position">
+                    <div>
+                        <h3>zee macro!</h3>
+                        <p class="role">lead developer</p>
+                    </div>
+                    <span class="date">2026 — 2026</span>
+                </article>
+
+                <article class="position">
+                    <div>
+                        <h3>rensselaer county</h3>
+                        <p class="role">qa tester / asset contributor</p>
+                    </div>
+                    <span class="date">2025 — 2025</span>
+                </article>
+
+                <article class="position">
+                    <div>
+                        <h3>scp:rp</h3>
+                        <p class="role">asset contributor</p>
+                    </div>
+                    <span class="date">2024 — 2024</span>
+                </article>
+            </div>
+        </section>
+
+        <section id="projects">
+            <div class="section-heading">
+                <h2>selected projects</h2>
+                <span class="subheading"></span>
+            </div>
+
+            <article class="project">
+                <div class="section-heading">
+                    <div>
+                        <h3>mindbreak</h3>
+                        <p class="role">psychological survival game</p>
+                    </div>
+                    <span class="date">in development</span>
+                </div>
+
+                <p class="project-description">
+                    a round-based survival game built around a player
+                    who becomes unstable each round, with unique abilities
+                    and sanity-related gameplay effects.
+                </p>
+
+                <ul class="project-details">
+                    <li>round selection and player role mechanics</li>
+                    <li>sanity effects, visual distortions, and audio systems</li>
+                    <li>client-server communication using remoteevents</li>
+                    <li>reusable interfaces built with roact</li>
+                    <li>modular systems intended for future features</li>
+                </ul>
+
+                <div class="tags">
+                    <span class="tag">lua</span>
+                    <span class="tag">gameplay</span>
+                    <span class="tag">multiplayer</span>
+                    <span class="tag">roact</span>
+                </div>
+            </article>
+
+            <article class="project">
+                <div class="section-heading">
+                    <div>
+                        <h3>garden builder</h3>
+                        <p class="role">creative sandbox game</p>
+                    </div>
+                    <span class="date">in development</span>
+                </div>
+
+                <p class="project-description">
+                    a sandbox building project focused on object placement,
+                    interactive interfaces, and player-created environments.
+                </p>
+
+                <ul class="project-details">
+                    <li>grid snapping, rotation, and placement previews</li>
+                    <li>animated shop interface and object previews</li>
+                    <li>player data persistence using roblox datastores</li>
+                    <li>roact interfaces for shops, trading, and administration</li>
+                </ul>
+
+                <div class="tags">
+                    <span class="tag">lua</span>
+                    <span class="tag">building systems</span>
+                    <span class="tag">datastores</span>
+                    <span class="tag">ui development</span>
+                </div>
+            </article>
+
+            <div class="project">
+                <h3>additional work</h3>
+                <p class="project-description">
+contact me on discord for more information.
+
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills">
+            <div class="section-heading">
+                <h2>tools & skills</h2>
+            </div>
+
+            <div class="skills">
+                <span class="skill">lua</span>
+                <span class="skill">roblox studio</span>
+                <span class="skill">roact</span>
+                <span class="skill">ui development</span>
+                <span class="skill">gameplay systems</span>
+                <span class="skill">remoteevents</span>
+                <span class="skill">remotefunctions</span>
+                <span class="skill">datastores</span>
+                <span class="skill">visual studio code</span>
+                <span class="skill">argon</span>
+                <span class="skill">html</span>
+                <span class="skill">css</span>
+                <span class="skill">qa testing</span>
+                <span class="skill">asset contribution</span>
+                <span class="skill">community moderation</span>
+                <span class="skill">administration</span>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="section-heading">
+                <h2>contact</h2>
+                <span class="subheading">links & work samples</span>
+            </div>
+
+            <div class="contact-list">
+                <div class="contact-item">
+                    <span class="contact-label">roblox</span>
+                    <a class="contact-value inline-link"
+                       href="https://www.roblox.com/users/4055167278/profile"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                        view profile ↗
+                    </a>
+                </div>
+
+                <div class="contact-item">
+                    <span class="contact-label">discord</span>
+                    <a class="contact-value inline-link"
+                       href="https://discord.com/users/1470513986217709601"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                        view profile ↗
+                    </a>
+                </div>
+
+                <div class="contact-item">
+                    <span class="contact-label">medal</span>
+                    <a class="contact-value inline-link"
+                       href="https://medal.tv/ro/u/raduutzu"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                        view profile ↗
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <span>© 2026 raduutzu. all rights reserved. unauthorized reproduction, distribution, or use of this portfolio's content is prohibited without prior permission.</span>
+        <span>2026-2027</span>
+    </footer>
 </div>
-</div>
-<section>
-<h2>skills</h2>
-<ul>
-<li>advanced lua scripting in roblox studio</li>
-<li>building scalable user interfaces using roact and component-based architecture</li>
-<li>state management, reusable components, props, hooks, and maintainable ui structures with roact</li>
-<li>developing responsive and animated interfaces with smooth user experiences</li>
-<li>client-server communication using remoteevents and remotefunctions</li>
-<li>data persistence using roblox datastores and profile management systems</li>
-<li>experience with visual studio code, argon, and modern roblox development workflows</li>
-<li>optimizing performance and maintaining clean, organized codebases</li>
-</ul>
-</section>
-<section>
-<h2 class="rainbow-text">projects (lua)</h2>
-<h3>mindbreak - psychological survival game</h3>
-<ul>
-<li>developed a round-based system that selects one player each round to become "unstable" with unique abilities</li>
-<li>implemented sanity mechanics including visual distortions, ui effects, and immersive audio systems</li>
-<li>used remoteevents to synchronize gameplay between server and clients</li>
-<li>built multiple interfaces using roact for maintainable and reusable ui components</li>
-<li>created modular systems designed for future expansion and content updates</li>
-<li>currently developing map voting, progression systems, and additional gameplay mechanics</li>
-</ul>
-<h3>garden builder - creative sandbox game</h3>
-<ul>
-<li>created a building system with grid snapping, rotation controls, and placement previews</li>
-<li>developed a smooth animated shop interface with responsive ui interactions</li>
-<li>implemented player data saving using roblox datastores</li>
-<li>added real-time object previews before placement</li>
-<li>built roact-powered interfaces including trading systems, shop menus, and administration tools</li>
-<li>focused on user experience, scalability, and clean ui design</li>
-</ul>
-</section>
-<section>
-<h2>work samples</h2>
-<p>
-i can provide code samples, screenshots, gameplay footage,
-or access to private testing places upon request.
-an link to the portfolio has been added down below.
-</p>
-</section>
-<section>
-<h2>contact</h2>
-<p>
-roblox profile:
-<a href="https://www.roblox.com/users/4055167278/profile" target="_blank">
-view profile
-</a>
-</p>
-<p>
-discord:
-<a href="http://discord.com/users/1470513986217709601" target="_blank">
-view profile
-</a>
-</p>
-<p>
-development portfolio:
-<a href="https://medal.tv/albums/1wUr5hlXX7kUJWIXoVK" target="_blank">
-view screenshots & project showcases
-</a>
-</p>
-</section>
-</div>
+
+<script>
+    const tabs = document.querySelectorAll('[role="tab"]');
+
+    tabs.forEach((tab) => {
+        tab.addEventListener('click', () => {
+            tabs.forEach((item) => {
+                const selected = item === tab;
+
+                item.setAttribute('aria-selected', String(selected));
+                item.tabIndex = selected ? 0 : -1;
+
+                document.getElementById(
+                    item.getAttribute('aria-controls')
+                ).hidden = !selected;
+            });
+        });
+
+        tab.addEventListener('keydown', (event) => {
+            if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') {
+                return;
+            }
+
+            event.preventDefault();
+
+            const currentIndex = Array.from(tabs).indexOf(tab);
+            const direction = event.key === 'ArrowRight' ? 1 : -1;
+            const nextIndex = (currentIndex + direction + tabs.length) % tabs.length;
+
+            tabs[nextIndex].focus();
+            tabs[nextIndex].click();
+        });
+    });
+</script>
 </body>
 </html>
